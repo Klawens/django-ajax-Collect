@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>collect</title>
+	<style type="text/css">
+	#collect{
+		margin-left: 30px;
+		width: 75px;
+		height: 35px;
+		padding: 0;
+		box-shadow: 0 0 2px #749dd8;
+		border: none;
+		border-radius: 2px;
+		background-color: #5f94d8;
+		color: white;
+		font-size: 13px;
+	}
+	#collect:hover{background-color: #2182cc}
+	</style>
+</head>
+<body>
+<!-- 页面加载时没有判断是否已收藏，这个自己写。。。 -->
+<button id="collect">&hearts;&nbsp;收藏</button>
+<script src="{% static 'js/collect.js' %}"></script>
+    <script>
+    $('#collect').on('click', function () {
+        add_fav($(this), {{ post.id }}, 'post', '{{ csrf_token }}')
+    })
+    //{{ post.id }}是指收藏对象的id，对应models的fav_id
+    //'post'是fav_type
+    //因为是POST提交，这里无法使用form里的{% csrf_token %}所以将其作为参数给ajax
+    </script>
+</body>
+</html>
